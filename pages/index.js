@@ -27,7 +27,7 @@ const Video = styled.video`
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   display: flex;
   position: absolute;
   top: 0;
@@ -64,7 +64,7 @@ const ContentContainer = styled.div`
 
 export default function Home() {
   return (
-    <>
+    <ContentContainer>
       <Main>
         <Video autoPlay="autoplay" muted loop>
           <source src="/video/main.mp4" type="video/mp4" />
@@ -83,6 +83,6 @@ export default function Home() {
         <Carousel />
         <GamePlay />
       </ContentContainer>
-    </>
+    </ContentContainer>
   );
 }

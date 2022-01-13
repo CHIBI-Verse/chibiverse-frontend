@@ -48,6 +48,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow: hidden;
+  height: 100%;
 }
 
 html,
@@ -58,6 +60,12 @@ body {
   text-rendering: optimizeSpeed;
   background: #121214;
   font-family: sukhumvit_setmedium;
+}
+
+body {
+  height: 100%;
+  overflow: auto;
+  scroll-behavior: smooth;
 }
 
 a {
