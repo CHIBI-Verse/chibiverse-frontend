@@ -1,9 +1,63 @@
+@font-face {
+  font-family: 'sukhumvit_setbold';
+  src: url('/fonts/sukhumvitset-bold-webfont.woff2') format('woff2'),
+    url('/fonts/sukhumvitset-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sukhumvit_setlight';
+  src: url('/fonts/sukhumvitset-light-webfont.woff2') format('woff2'),
+    url('/fonts/sukhumvitset-light-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sukhumvit_setmedium';
+  src: url('/fonts/sukhumvitset-medium-webfont.woff2') format('woff2'),
+    url('/fonts/sukhumvitset-medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sukhumvit_setsemi_bold';
+  src: url('/fonts/sukhumvitset-semibold-webfont.woff2') format('woff2'),
+    url('/fonts/sukhumvitset-semibold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'sukhumvit_setthin';
+  src: url('/fonts/sukhumvitset-thin-webfont.woff2') format('woff2'),
+    url('/fonts/sukhumvitset-thin-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'marvinregular';
+  src: url('/fonts/marvin_font-webfont.woff2') format('woff2'),
+    url('/fonts/marvin_font-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
-  padding: 0;
+  display: block;
+  min-height: 100vh;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  text-rendering: optimizeSpeed;
+  background: #121214;
+  font-family: sukhumvit_setmedium;
 }
 
 a {
