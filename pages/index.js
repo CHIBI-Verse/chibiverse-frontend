@@ -12,6 +12,7 @@ import RoadMap from '../components/RoadMap';
 import RoadMapProgress from '../components/RoadMapProgress';
 import Team from '../components/Team';
 import FAQ from '../components/FAQ';
+import Footer from '../components/Footer';
 import MintButton from '../components/MintBtn';
 
 const Main = styled.main`
@@ -92,6 +93,7 @@ export default function Home() {
         <RoadMapProgress />
         <Team />
         <FAQ />
+        <Footer />
       </ContentContainer>
     </ContentContainer>
   );
