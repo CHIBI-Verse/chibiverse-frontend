@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { Row, Col } from 'antd';
 import Carousel from 'react-grid-carousel';
-import MintButton from '../MintBtn';
+import FAQItem from '../FAQItem';
 
 const Section = styled.section`
   position: relative;
@@ -128,7 +128,30 @@ const FooterWrapper = styled(Col)`
   margin: 50px 0px 0px;
 `;
 
-const Team = () => {
+const Container = styled(Row)`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+const List = styled(Col)`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 1132px;
+`;
+
+const FAQ = () => {
+  const [qNo, setQNo] = React.useState('');
+
+  const handleClick = (no) => () => {
+    if (no === qNo) return setQNo('');
+
+    setQNo(no);
+  };
   return (
     <Section id="faq">
       <Row gutter={[48, 0]}>
@@ -136,8 +159,55 @@ const Team = () => {
           <SubTitleImage src="/images/faq.png" alt="faq" />
         </TitleWrapper>
       </Row>
+      <Container gutter={[0, 0]}>
+        <List span={24}>
+          <FAQItem
+            onClick={handleClick('1')}
+            open={qNo === '1'}
+            q="What's Chibiverse?"
+            a="Chibiverse is a Play-to-Earn 2D Massive Multiplayer Online Role-playing Game (2D-MMORPG) that is built using Ethereum blockchain technology."
+          />
+          <FAQItem
+            onClick={handleClick('2')}
+            open={qNo === '2'}
+            q="When do Chibiverse launch?"
+            a="TBA"
+          />
+          <FAQItem
+            onClick={handleClick('3')}
+            open={qNo === '3'}
+            q="How many Chibiverse will be available?"
+            a="3,000"
+          />
+          <FAQItem
+            onClick={handleClick('4')}
+            open={qNo === '4'}
+            q="How many different Chibiverse traits are there?"
+            a="There are 27 Eyes, 40 Heads, 8 Skins, 10 Backgrounds, 39 Outfits, 21 Items, 24 Mouths, 36 Weapons, and 6 types "
+          />
+          <FAQItem
+            onClick={handleClick('5')}
+            open={qNo === '5'}
+            q="What will the mint price be?"
+            a="The price to mint a Chibiverse will be 0.025 ETH."
+          />
+          <FAQItem
+            onClick={handleClick('6')}
+            open={qNo === '6'}
+            q="What is the maximun mint per wallet?"
+            a="No limit."
+          />
+          <FAQItem
+            onClick={handleClick('7')}
+            open={qNo === '7'}
+            q="Is thai a rug pull?"
+          >
+            <img src="/images/no.gif" alt="no" />
+          </FAQItem>
+        </List>
+      </Container>
     </Section>
   );
 };
 
-export default Team;
+export default FAQ;

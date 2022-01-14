@@ -148,7 +148,6 @@ const Team = () => {
           <Video autoPlay loop muted>
             <source src="/video/Retro.mp4" type="video/mp4" />
           </Video>
-
           <Title>Artist</Title>
           <Paragraph>MAXVOY</Paragraph>
         </ContentWrapper>
