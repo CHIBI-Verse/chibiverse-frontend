@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Image from 'next/image';
+
 import { Row, Col } from 'antd';
 import Carousel from 'react-grid-carousel';
 import MintButton from '../MintBtn';
