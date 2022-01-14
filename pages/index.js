@@ -8,6 +8,10 @@ import Marketplace from '../components/Marketplace';
 import Chibi from '../components/Chibi';
 import Carousel from '../components/Carousel';
 import GamePlay from '../components/GamePlay';
+import RoadMap from '../components/RoadMap';
+import RoadMapProgress from '../components/RoadMapProgress';
+import Team from '../components/Team';
+import FAQ from '../components/FAQ';
 import MintButton from '../components/MintBtn';
 
 const Main = styled.main`
@@ -80,8 +84,14 @@ export default function Home() {
         <Features />
         <Marketplace />
         <Chibi />
+      </ContentContainer>
+      <ContentContainer>
         <Carousel />
         <GamePlay />
+        <RoadMap />
+        <RoadMapProgress />
+        <Team />
+        <FAQ />
       </ContentContainer>
     </ContentContainer>
   );
