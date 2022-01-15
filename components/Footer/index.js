@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import Link from 'next/link';
 import { Row, Col, Slider } from 'antd';
 import MintButton from '../MintBtn';
 
@@ -91,14 +91,26 @@ const TitleImage = styled.img`
 `;
 
 const ContentImage = styled.img`
-  width: 30%;
+  width: 70%;
 
   @media (max-width: 1168px) {
-    width: 50%;
+    width: 30%;
   }
 
   @media (max-width: 767px) {
-    width: 70%;
+    width: 10%;
+  }
+
+  @media (max-width: 460px) {
+    width: 40%;
+  }
+`;
+
+const Container = styled(Row)`
+  width: 410px;
+
+  @media (max-width: 460px) {
+    width: 210px;
   }
 `;
 
@@ -116,6 +128,47 @@ const Marketplace = () => {
     <Section>
       <Row gutter={[48, 48]}>
         <FooterWrapper span={24}>
+          <Title>Join The Community</Title>
+        </FooterWrapper>
+      </Row>
+      <Row style={{ marginTop: '50px' }} g gutter={[0, 0]}>
+        <ContentWrapper span={24}>
+          <Container gutter={[0, 0]}>
+            <ContentWrapper style={{ cursor: 'pointer' }} span={8}>
+              <a
+                href="https://twitter.com/ChibiVerseNFT"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <ContentWrapper>
+                  <ContentImage src="/images/Twitter.png" alt="twitter" />
+                  <Paragraph style={{ padding: 0 }}>TWITTER</Paragraph>
+                </ContentWrapper>
+              </a>
+            </ContentWrapper>
+            <ContentWrapper style={{ cursor: 'pointer' }} span={8}>
+              <ContentImage src="/images/Opensea.png" alt="opensea" />
+              <Paragraph style={{ padding: 0 }}>Opensea</Paragraph>
+            </ContentWrapper>
+            <ContentWrapper style={{ cursor: 'pointer' }} span={8}>
+              <a
+                href="https://discord.gg/EKxWC7zPc3"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <ContentWrapper>
+                  <ContentImage src="/images/Discord.png" alt="discord" />
+                  <Paragraph style={{ padding: 0 }}>Discord</Paragraph>
+                </ContentWrapper>
+              </a>
+            </ContentWrapper>
+          </Container>
+        </ContentWrapper>
+      </Row>
+
+      <Row gutter={[0, 0]}>
+        <FooterWrapper span={24}>
+          <Paragraph>copyright © CHIBIVERSE 2021.</Paragraph>
           <Paragraph>- Powered By TOFFYSOFT -</Paragraph>
         </FooterWrapper>
       </Row>

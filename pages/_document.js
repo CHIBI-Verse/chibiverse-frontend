@@ -44,7 +44,7 @@ export default class MyDocument extends Document {
           <meta name="twitter:card" content="summary_large_image" />
           <meta
             property="og:image"
-            content="https://www.chibiverse.fun/images/main.png"
+            content="https://cdn.discordapp.com/icons/924866972989136906/3d4d444bf68f748b9285f52bf401e6fa.jpg?size=256"
           />
           <meta
             property="description"
@@ -55,6 +55,15 @@ export default class MyDocument extends Document {
             content="Chibiverse is a play-to-earn on-chain game and eco-system, 3000 randomly generated NFTs characters on Ethereum blockchain as ERC-721 tokens."
           />
           <meta property="og:title" content="Chibi-Verse" />
+          <meta
+            name="twitter:image"
+            content="https://cdn.discordapp.com/icons/924866972989136906/3d4d444bf68f748b9285f52bf401e6fa.jpg?size=256"
+          />
+          <meta name="twitter:title" content="Chibi-Verse" />
+          <meta
+            property="twitter:description"
+            content="Chibiverse is a play-to-earn on-chain game and eco-system, 3000 randomly generated NFTs characters on Ethereum blockchain as ERC-721 tokens."
+          />
           {/* <link rel="shortcut icon" href="/favicon.ico" /> */}
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
