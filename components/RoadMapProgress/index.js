@@ -299,7 +299,7 @@ const Q4VerticalParagraph = styled(Paragraph)`
 
 const Chibi = () => {
   return (
-    <Section id="road_map">
+    <Section>
       <Row gutter={[48, 0]}>
         <TitleWrapper span={24}>
           <SubTitleImage src="/images/road_map/roadmap2.png" alt="roadmap2" />

@@ -10,6 +10,7 @@ import Carousel from '../components/Carousel';
 import GamePlay from '../components/GamePlay';
 import RoadMap from '../components/RoadMap';
 import RoadMapProgress from '../components/RoadMapProgress';
+import Future from '../components/Future';
 import Team from '../components/Team';
 import FAQ from '../components/FAQ';
 import Footer from '../components/Footer';
@@ -91,6 +92,7 @@ export default function Home() {
         <GamePlay />
         <RoadMap />
         <RoadMapProgress />
+        <Future />
         <Team />
         <FAQ />
         <Footer />

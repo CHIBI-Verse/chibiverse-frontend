@@ -12,20 +12,20 @@ const Section = styled.section`
   background-repeat: no-repeat;
   padding: 80px 20vw;
   overflow: hidden;
-  /* min-height: 100vh; */
+  min-height: 100vh;
 
   @media (max-width: 1921px) {
-    /* min-height: 0px; */
+    min-height: 0px;
     padding: 80px 10vw;
   }
 
   @media (max-width: 1168px) {
-    /* min-height: 0px; */
+    min-height: 0px;
     padding: 60px 0;
   }
 
   @media (max-width: 767px) {
-    /* min-height: 0px; */
+    min-height: 0px;
     padding: 40px 0;
   }
 `;
@@ -128,32 +128,35 @@ const FooterWrapper = styled(Col)`
   margin: 50px 0px 0px;
 `;
 
-const Team = () => {
+const Chibi = () => {
   return (
-    <Section id="team">
+    <Section>
       <Row gutter={[48, 0]}>
         <TitleWrapper span={24}>
-          <SubTitleImage src="/images/team.png" alt="team" />
+          <TitleImage src="/images/road_map/future.png" alt="future" />
         </TitleWrapper>
       </Row>
+
       <Row gutter={[48, 48]}>
         <ContentWrapper lg={24} xl={12}>
-          <Video autoPlay loop muted>
-            <source src="/video/Fire.mp4" type="video/mp4" />
-          </Video>
-          <Title>Developer</Title>
-          <Paragraph>FEE KUNG</Paragraph>
+          <img src="/images/road_map/vox.png" alt="vox" width="70%" />
+          <Paragraph>
+            Playable avatars in The Sandbox Game for Chibi holder.
+          </Paragraph>
         </ContentWrapper>
         <ContentWrapper lg={24} xl={12}>
-          <Video autoPlay loop muted>
-            <source src="/video/Retro.mp4" type="video/mp4" />
-          </Video>
-          <Title>Artist</Title>
-          <Paragraph>MAXVOY</Paragraph>
+          <img src="/images/road_map/3d.png" alt="3d" width="100%" />
+          <Paragraph>3D Chibi project.</Paragraph>
         </ContentWrapper>
+      </Row>
+
+      <Row gutter={[48, 48]}>
+        <FooterWrapper span={24}>
+          <Paragraph>The launch date will be announced soon.</Paragraph>
+        </FooterWrapper>
       </Row>
     </Section>
   );
 };
 
-export default Team;
+export default Chibi;

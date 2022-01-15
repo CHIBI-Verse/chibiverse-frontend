@@ -113,7 +113,7 @@ const FooterWrapper = styled(Col)`
 
 const Marketplace = () => {
   return (
-    <Section id="marketplace">
+    <Section>
       <Row gutter={[48, 48]}>
         <FooterWrapper span={24}>
           <Paragraph>- Powered By TOFFYSOFT -</Paragraph>
