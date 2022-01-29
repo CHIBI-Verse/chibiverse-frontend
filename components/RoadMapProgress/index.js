@@ -314,7 +314,7 @@ const Chibi = () => {
         <Horizontal span={24}>
           <Line>
             <Dot>
-              <Q1Title>Q1 2022</Q1Title>
+              <Q1Title>Phase 1</Q1Title>
               <Q1Paragraph>
                 Concept Art Game Concepts Website Roadmap
               </Q1Paragraph>
@@ -324,43 +324,43 @@ const Chibi = () => {
                 IDO/Release Alpha game (P2E) P2P marketplace Farming system
                 Listing on DEX
               </Q2Paragraph>
-              <Q2Title>Q2 2022</Q2Title>
+              <Q2Title>Phase 2</Q2Title>
             </Dot>
             <Dot>
-              <Q3Title>Q3 2022</Q3Title>
+              <Q3Title>Phase 3</Q3Title>
               <Q3Paragraph>
                 Release Beta Game Carft/Upgrade Arena Land Dungeon
               </Q3Paragraph>
             </Dot>
             <Dot>
               <Q4Paragraph>Release Full Game Connect Loot NFTs</Q4Paragraph>
-              <Q4Title>Q4 2022</Q4Title>
+              <Q4Title>Phase 4</Q4Title>
             </Dot>
           </Line>
         </Horizontal>
         <Vertical span={24}>
           <VerticalLine>
             <VerticalDot>
-              <Q1VerticalTitle>Q1 2022</Q1VerticalTitle>
+              <Q1VerticalTitle>Phase 1</Q1VerticalTitle>
               <Q1VerticalParagraph>
                 Concept Art Game Concepts Website Roadmap
               </Q1VerticalParagraph>
             </VerticalDot>
             <VerticalDot>
-              <Q2VerticalTitle>Q2 2022</Q2VerticalTitle>
+              <Q2VerticalTitle>Phase 2</Q2VerticalTitle>
               <Q2VerticalParagraph>
                 IDO/Release Alpha game (P2E) P2P marketplace Farming system
                 Listing on DEX
               </Q2VerticalParagraph>
             </VerticalDot>
             <VerticalDot>
-              <Q3VerticalTitle>Q3 2022</Q3VerticalTitle>
+              <Q3VerticalTitle>Phase 3</Q3VerticalTitle>
               <Q3VerticalParagraph>
                 Release Beta Game Carft/Upgrade Arena Land Dungeon
               </Q3VerticalParagraph>
             </VerticalDot>
             <VerticalDot>
-              <Q4VerticalTitle>Q4 2022</Q4VerticalTitle>
+              <Q4VerticalTitle>Phase 4</Q4VerticalTitle>
               <Q4VerticalParagraph>
                 Release Full Game Connect Loot NFTs
               </Q4VerticalParagraph>
