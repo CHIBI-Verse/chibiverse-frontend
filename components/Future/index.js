@@ -145,7 +145,12 @@ const Chibi = () => {
           </Paragraph>
         </ContentWrapper>
         <ContentWrapper lg={24} xl={12}>
-          <img src="/images/road_map/3d.png" alt="3d" width="100%" />
+          <img
+            src="/images/road_map/3d.jpeg"
+            alt="3d"
+            width="70%"
+            style={{ marginTop: '20px', marginBottom: '20px' }}
+          />
           <Paragraph>3D Chibi project.</Paragraph>
         </ContentWrapper>
       </Row>

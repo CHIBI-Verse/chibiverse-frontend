@@ -1,20 +1,42 @@
 import Head from 'next/head';
+import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
 import HamburgerMenu from '../components/Hamburger';
-import About from '../components/About';
-import Features from '../components/Features';
-import Marketplace from '../components/Marketplace';
-import Chibi from '../components/Chibi';
-import Carousel from '../components/Carousel';
-import GamePlay from '../components/GamePlay';
-import RoadMap from '../components/RoadMap';
-import RoadMapProgress from '../components/RoadMapProgress';
-import Future from '../components/Future';
-import Team from '../components/Team';
-import FAQ from '../components/FAQ';
-import Footer from '../components/Footer';
+// import About from '../components/About';
+// import Features from '../components/Features';
+// import Marketplace from '../components/Marketplace';
+// import Chibi from '../components/Chibi';
+// import Carousel from '../components/Carousel';
+// import GamePlay from '../components/GamePlay';
+// import RoadMap from '../components/RoadMap';
+// import RoadMapProgress from '../components/RoadMapProgress';
+// import Future from '../components/Future';
+// import Team from '../components/Team';
+// import FAQ from '../components/FAQ';
+// import Footer from '../components/Footer';
 import MintButton from '../components/MintBtn';
+
+const About = dynamic(() => import('../components/About'));
+const Features = dynamic(() => import('../components/Features'));
+const Chibi = dynamic(() => import('../components/Chibi'));
+const RoadMap = dynamic(() => import('../components/RoadMap'));
+const RoadMapProgress = dynamic(() => import('../components/RoadMapProgress'));
+const Future = dynamic(() => import('../components/Future'));
+const FAQ = dynamic(() => import('../components/FAQ'));
+const Footer = dynamic(() => import('../components/Footer'));
+const Marketplace = dynamic(() => import('../components/Marketplace'), {
+  ssr: false,
+});
+const Carousel = dynamic(() => import('../components/Carousel'), {
+  ssr: false,
+});
+const GamePlay = dynamic(() => import('../components/GamePlay'), {
+  ssr: false,
+});
+const Team = dynamic(() => import('../components/Team'), {
+  ssr: false,
+});
 
 const Main = styled.main`
   width: 100%;

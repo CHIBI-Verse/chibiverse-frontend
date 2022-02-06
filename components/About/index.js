@@ -80,7 +80,7 @@ const About = () => {
         <ContentWrapper lg={24} xl={12}>
           <img src="/images/about.png" alt="about chibi" width="100%" />
           <Paragraph>
-            3000 randomly generated NFTs characters on Ethereum blockchain as
+            10,000 randomly generated NFTs characters on Ethereum blockchain as
             ERC-721 tokens. Chibiverse is a play-to-earn on-chain game and
             eco-system.
           </Paragraph>

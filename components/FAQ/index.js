@@ -177,7 +177,7 @@ const FAQ = () => {
             onClick={handleClick('3')}
             open={qNo === '3'}
             q="How many Chibiverse will be available?"
-            a="3,000"
+            a="10,000"
           />
           <FAQItem
             onClick={handleClick('4')}
@@ -189,7 +189,7 @@ const FAQ = () => {
             onClick={handleClick('5')}
             open={qNo === '5'}
             q="What will the mint price be?"
-            a="The price to mint a Chibiverse will be 0.025 ETH."
+            a="The price to mint a Chibiverse will be 0.01 ETH."
           />
           <FAQItem
             onClick={handleClick('6')}

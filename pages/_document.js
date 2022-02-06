@@ -48,11 +48,11 @@ export default class MyDocument extends Document {
           />
           <meta
             property="description"
-            content="Chibiverse is a play-to-earn on-chain game and eco-system, 3000 randomly generated NFTs characters on Ethereum blockchain as ERC-721 tokens."
+            content="Chibiverse is a play-to-earn on-chain game and eco-system, 10,000 randomly generated NFTs characters on Ethereum blockchain as ERC-721 tokens."
           />
           <meta
             property="og:description"
-            content="Chibiverse is a play-to-earn on-chain game and eco-system, 3000 randomly generated NFTs characters on Ethereum blockchain as ERC-721 tokens."
+            content="Chibiverse is a play-to-earn on-chain game and eco-system, 10,000 randomly generated NFTs characters on Ethereum blockchain as ERC-721 tokens."
           />
           <meta property="og:title" content="Chibi-Verse" />
           <meta
@@ -62,9 +62,9 @@ export default class MyDocument extends Document {
           <meta name="twitter:title" content="Chibi-Verse" />
           <meta
             property="twitter:description"
-            content="Chibiverse is a play-to-earn on-chain game and eco-system, 3000 randomly generated NFTs characters on Ethereum blockchain as ERC-721 tokens."
+            content="Chibiverse is a play-to-earn on-chain game and eco-system, 10,000 randomly generated NFTs characters on Ethereum blockchain as ERC-721 tokens."
           />
-          {/* <link rel="shortcut icon" href="/favicon.ico" /> */}
+          <link rel="shortcut icon" href="/favicon.ico" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"

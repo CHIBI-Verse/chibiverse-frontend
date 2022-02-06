@@ -87,7 +87,7 @@ const TitleWrapper = styled(Col)`
 `;
 
 const TitleImage = styled.img`
-  width: 60%;
+  width: 40%;
 
   @media (max-width: 1168px) {
     width: 80%;

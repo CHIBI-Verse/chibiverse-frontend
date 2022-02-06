@@ -135,8 +135,8 @@ const Marketplace = () => {
         <ContentWrapper span={24}>
           <Carousel
             hideArrow
-            cols={6}
-            rows={2}
+            cols={9}
+            rows={4}
             gap={0}
             loop
             autoplay={3000}
@@ -144,19 +144,19 @@ const Marketplace = () => {
               {
                 breakpoint: 768,
                 cols: 3,
-                rows: 2,
+                rows: 4,
                 gap: 0,
                 loop: true,
                 autoplay: 3000,
               },
-              {
-                breakpoint: 1168,
-                cols: 6,
-                rows: 2,
-                gap: 0,
-                loop: true,
-                autoplay: 3000,
-              },
+              // {
+              //   breakpoint: 1168,
+              //   cols: 6,
+              //   rows: 4,
+              //   gap: 0,
+              //   loop: true,
+              //   autoplay: 3000,
+              // },
             ]}
           >
             <Carousel.Item>
@@ -266,6 +266,222 @@ const Marketplace = () => {
             </Carousel.Item>
             <Carousel.Item>
               <img width="100%" src="/images/CHIBIs/25.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/31.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/32.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/33.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/34.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/35.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/36.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/37.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/38.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/39.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/40.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/41.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/42.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/43.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/44.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/45.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/46.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/47.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/48.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/49.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/50.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/51.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/52.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/53.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/54.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/55.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/56.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/57.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/58.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/59.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/60.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/8.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/1.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/17.jpg" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/4.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/24.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/25.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/1.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/2.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/3.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/4.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/5.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/6.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/7.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/8.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/9.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/10.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/11.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/12.jpg" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/13.jpg" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/14.jpg" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/15.jpg" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/16.jpg" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/17.jpg" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/18.jpg" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/19.jpg" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/20.jpg" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/21.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/22.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/23.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/24.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/40.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/41.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/42.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/43.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/44.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/45.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/46.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/47.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/48.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/49.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/50.png" />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img width="100%" src="/images/CHIBIs/51.png" />
             </Carousel.Item>
           </Carousel>
         </ContentWrapper>
