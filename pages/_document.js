@@ -71,10 +71,13 @@ export default class MyDocument extends Document {
             href="https://fonts.gstatic.com"
             crossOrigin={'true'}
           />
+          <link rel="shortcut icon" href="/template_data/favicon.ico" />
+          <link rel="stylesheet" href="/template_data/style.css" />
         </Head>
         <body>
           <Main />
           <NextScript />
+          <script src="/script/demo.js" />
         </body>
       </Html>
     );

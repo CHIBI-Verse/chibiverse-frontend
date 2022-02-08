@@ -126,7 +126,7 @@ const FooterWrapper = styled(Col)`
   margin: 50px 0px 0px;
 `;
 
-const Marketplace = () => {
+const GamePlay = () => {
   return (
     <Section>
       <Row style={{ marginTop: '40px' }} gutter={[48, 0]}>
@@ -150,4 +150,4 @@ const Marketplace = () => {
   );
 };
 
-export default Marketplace;
+export default GamePlay;

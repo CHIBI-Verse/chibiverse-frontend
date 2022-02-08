@@ -152,7 +152,7 @@ const Marketplace = () => {
             </ContentWrapper>
             <ContentWrapper style={{ cursor: 'pointer' }} span={8}>
               <a
-                href="https://discord.gg/EKxWC7zPc3"
+                href="https://discord.gg/HFa67RWDm6"
                 target="_blank"
                 rel="noreferrer"
               >
