@@ -77,7 +77,6 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <script src="/script/demo.js" />
         </body>
       </Html>
     );
