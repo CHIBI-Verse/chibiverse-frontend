@@ -189,18 +189,18 @@ const FAQ = () => {
             onClick={handleClick('5')}
             open={qNo === '5'}
             q="What will the mint price be?"
-            a="The price to mint a Chibiverse will be 0.01 ETH."
+            a="The price to mint a Chibiverse will be 0.006 ETH."
           />
           <FAQItem
             onClick={handleClick('6')}
             open={qNo === '6'}
-            q="What is the maximun mint per wallet?"
+            q="What is the maximum mint per wallet?"
             a="No limit."
           />
           <FAQItem
             onClick={handleClick('7')}
             open={qNo === '7'}
-            q="Is thai a rug pull?"
+            q="Is this a rug pull?"
           >
             <img src="/images/no.gif" alt="no" />
           </FAQItem>
