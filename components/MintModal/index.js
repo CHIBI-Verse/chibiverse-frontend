@@ -1,9 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
+import _ from 'lodash';
+import { Spin, Button } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
-import { Row, Col, Slider } from 'antd';
 import { useOnClickOutside } from '../../hooks';
-
+const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />;
+const antIconSm = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 const BaseModal = styled.div`
   position: absolute;
   top: 0;
@@ -15,7 +18,7 @@ const BaseModal = styled.div`
   justify-content: center;
   align-items: flex-start;
   background: #0006;
-  visibility: ${(props) => (props?.show ? 'visible' : 'hidden')};
+  visibility: ${(props) => (props?.open ? 'visible' : 'hidden')};
   transition: visibility 0s linear 300ms, opacity 400ms;
 `;
 
@@ -70,7 +73,22 @@ const H3 = styled.h3`
   text-align: center;
 `;
 
-const Form = styled.form`
+const H4 = styled.h4`
+  font-family: marvinregular;
+  text-align: center;
+`;
+
+const H5 = styled.h5`
+  font-family: marvinregular;
+  text-align: center;
+`;
+
+const H6 = styled.h6`
+  font-family: marvinregular;
+  text-align: center;
+`;
+
+const Form = styled.div`
   justify-content: center;
   /* align-items: center; */
   display: flex;
@@ -95,6 +113,8 @@ const QuantityItem = styled.div`
   padding: 0.5rem 1rem;
   text-align: center;
   cursor: pointer;
+  background: ${(props) => (props?.active ? '#ee6226' : '#fff')};
+  color: ${(props) => (props?.active ? 'hsla(0, 0%, 100%, 0.9)' : '#000')}; ;
 `;
 
 const InputWrapper = styled.div`
@@ -111,6 +131,7 @@ const Input = styled.input`
   outline: none;
   padding-right: 4rem;
   width: 100%;
+  text-align: center;
 `;
 
 const InputDecoration = styled.span`
@@ -142,13 +163,42 @@ const PurchaseBtn = styled.button`
   min-width: 200px;
 `;
 
-const MintModal = ({ onClose = () => {}, show }) => {
+const MintModal = ({
+  onOpen = () => {},
+  onClose = () => {},
+  onConnect = () => {},
+  setAmount = () => {},
+  amount,
+  open,
+  connected,
+  connecting,
+  totalSupply,
+  web3,
+  price,
+  claimable,
+  onMint = () => {},
+  minting,
+  maxSupply,
+}) => {
+  const [cur, setCur] = useState(2);
+
   const wrapperRef = useRef(null);
 
   useOnClickOutside(wrapperRef, onClose);
 
+  const handleClickQuantityItem = (n) => () => {
+    setAmount(n);
+    setCur(n);
+  };
+
+  useEffect(() => {
+    if (open) {
+      onOpen();
+    }
+  }, [open]);
+
   return (
-    <BaseModal show={show}>
+    <BaseModal open={open}>
       <Modal ref={wrapperRef}>
         <Body>
           <Close onClick={onClose}>
@@ -174,28 +224,104 @@ const MintModal = ({ onClose = () => {}, show }) => {
           <H3>
             <b>Mint CHiBI</b>
           </H3>
-          <div style={{ textAlign: 'center' }}>0.006 ETH</div>
-          <Form>
-            <FormBody>
-              <Quantity>
-                <QuantityItem>1</QuantityItem>
-                <QuantityItem>2</QuantityItem>
-                <QuantityItem>5</QuantityItem>
-                <QuantityItem>10</QuantityItem>
-              </Quantity>
-              <InputWrapper>
-                <Input
-                  type="text"
-                  min="1"
-                  max="20"
-                  placeholder="Insert custom amount"
-                  value="1"
-                />
-                <InputDecoration>Max. 20</InputDecoration>
-              </InputWrapper>
-              <PurchaseBtn>Purchase</PurchaseBtn>
-            </FormBody>
-          </Form>
+          {connecting ? (
+            <Spin
+              style={{ display: 'block', margin: '1rem auto 0' }}
+              indicator={antIcon}
+            />
+          ) : connected ? (
+            <>
+              <H4>{`${totalSupply.toLocaleString()}/${maxSupply.toLocaleString()}`}</H4>
+              {claimable ? (
+                <Form>
+                  <FormBody>
+                    <PurchaseBtn style={{ minWidth: '250px' }}>
+                      Claim Giveaway
+                    </PurchaseBtn>
+                  </FormBody>
+                </Form>
+              ) : (
+                <>
+                  <div style={{ textAlign: 'center' }}>{`${web3.utils.fromWei(
+                    _.toString(price),
+                    'ether',
+                  )} ETH each`}</div>
+                  <Form>
+                    <FormBody>
+                      <Quantity>
+                        <QuantityItem
+                          active={
+                            _.toSafeInteger(amount) === 1 &&
+                            _.toSafeInteger(cur) === 1
+                          }
+                          onClick={handleClickQuantityItem(1)}
+                        >
+                          1
+                        </QuantityItem>
+                        <QuantityItem
+                          active={
+                            _.toSafeInteger(amount) === 2 &&
+                            _.toSafeInteger(cur) === 2
+                          }
+                          onClick={handleClickQuantityItem(2)}
+                        >
+                          2
+                        </QuantityItem>
+                        <QuantityItem
+                          active={
+                            _.toSafeInteger(amount) === 5 &&
+                            _.toSafeInteger(cur) === 5
+                          }
+                          onClick={handleClickQuantityItem(5)}
+                        >
+                          5
+                        </QuantityItem>
+                        <QuantityItem
+                          active={
+                            _.toSafeInteger(amount) === 10 &&
+                            _.toSafeInteger(cur) === 10
+                          }
+                          onClick={handleClickQuantityItem(10)}
+                        >
+                          10
+                        </QuantityItem>
+                      </Quantity>
+                      <InputWrapper>
+                        <Input
+                          type="text"
+                          min="1"
+                          max="20"
+                          placeholder="Insert custom amount"
+                          value={amount}
+                          onChange={(e) => {
+                            setAmount(e?.target?.value);
+                            setCur(0);
+                          }}
+                        />
+                        <InputDecoration>Max. 20</InputDecoration>
+                      </InputWrapper>
+                      {minting ? (
+                        <Spin
+                          style={{ display: 'block', margin: '1rem auto 0' }}
+                          indicator={antIconSm}
+                        />
+                      ) : (
+                        <PurchaseBtn onClick={onMint}>Purchase</PurchaseBtn>
+                      )}
+                    </FormBody>
+                  </Form>
+                </>
+              )}
+            </>
+          ) : (
+            <Form>
+              <FormBody>
+                <PurchaseBtn onClick={onConnect} style={{ minWidth: '250px' }}>
+                  Connect Wallet
+                </PurchaseBtn>
+              </FormBody>
+            </Form>
+          )}
         </Body>
       </Modal>
     </BaseModal>

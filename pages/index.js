@@ -3,8 +3,8 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
-import MintModal from '../components/MintModal';
-import { ethers } from 'ethers';
+
+import { BigNumber, ethers } from 'ethers';
 import Web3Modal from 'web3modal';
 // @ts-ignore
 import WalletConnectProvider from '@walletconnect/web3-provider';
@@ -34,6 +34,10 @@ const GameDemo = dynamic(() => import('../components/GameDemo'), {
   ssr: false,
 });
 const Team = dynamic(() => import('../components/Team'), {
+  ssr: false,
+});
+
+const MintModal = dynamic(() => import('../components/MintModal'), {
   ssr: false,
 });
 
@@ -138,6 +142,8 @@ export default function Home() {
 
   const intvl = React.useRef(null);
   const [fetching, setFetching] = React.useState(false);
+  const [connecting, setConnecting] = React.useState(false);
+  const [minting, setMinting] = React.useState(false);
   const [address, setAddress] = React.useState('');
   const [web3, setWeb3] = React.useState(null);
   const [provider, setProvider] = React.useState(null);
@@ -158,12 +164,16 @@ export default function Home() {
   const [newOwnerTarget, setNewOwnerTarget] = React.useState('');
   const [toAddress, setToAddress] = React.useState('');
   const [sendToken, setSendToken] = React.useState('');
-  const [amount, setAmount] = React.useState(1);
+  const [amount, setAmount] = React.useState(2);
+  const [price, setPrice] = React.useState();
+  const [isClaimable, setIsClaimable] = React.useState();
+  const [totalSupply, setTotalSupply] = React.useState(0);
+  const [maxSupply, setMaxSupply] = React.useState(0);
 
   const onConnect = async () => {
     if (connected && provider && web3 && address) return;
 
-    setFetching(true);
+    setConnecting(true);
     try {
       const provider = await web3Modal.connect();
 
@@ -206,17 +216,25 @@ export default function Home() {
 
       const totalSupply = await nftContract.totalSupply();
 
+      const claimable = await nftContract.claimable(address);
+      const price = await nftContract.CHIBI_PRICE();
+      const maxSupply = await nftContract.MAX_CHIBI();
+
+      setMaxSupply(maxSupply.toNumber());
+      setIsClaimable(claimable);
+      setPrice(price.toNumber());
+      setTotalSupply(totalSupply.toNumber());
       setNftContract(nftContract);
       setWeb3Provider(web3Provider);
       setSigner(signer);
       setWeb3(Web3);
       setProvider(provider);
 
-      setFetching(false);
+      setConnecting(false);
       setConnected(true);
     } catch (e) {
       console.log({ e });
-      setFetching(false);
+      setConnecting(false);
       setErr(e?.data ?? e);
       resetApp();
     }
@@ -260,28 +278,62 @@ export default function Home() {
 
   const handleClickMint = async () => {
     try {
-      if (!connected || !provider || !web3 || !address) {
-        return onConnect();
-      }
-
-      setFetching(true);
       setShowModal(true);
-      // const claimable = await nftContract.claimable(address);
-      // let price = await nftContract.CHIBI_PRICE();
-      // price = price.toNumber();
+    } catch (e) {
+      // setFetching(false);
+      console.error({ e });
 
-      // console.log({ price, claimable, nftContract });
+      setErr(e?.data ?? e);
+    }
+  };
 
-      // const options = { value: price * amount };
-      // await nftContract.mint(amount, options);
+  const mint = async () => {
+    setMinting(true);
+    try {
+      const each = BigNumber.from(price);
+
+      const options = { value: each.mul(amount).toString() };
+      await nftContract.mint(amount, options);
 
       // const walletOfOwner = await nftContract.walletOfOwner(address);
       // console.log({ walletOfOwner });
 
-      setFetching(false);
+      const totalSupply = await nftContract.totalSupply();
+      setTotalSupply(totalSupply.toNumber());
+      setMinting(false);
+      setShowModal(false);
     } catch (e) {
-      setFetching(false);
+      // setFetching(false);
       console.error({ e });
+      setMinting(false);
+      setErr(e?.data ?? e);
+    }
+  };
+
+  const onOpen = async () => {
+    if (!connected || !provider || !web3 || !address) {
+      setShowModal(true);
+      return;
+    }
+
+    setConnecting(true);
+    setShowModal(true);
+    try {
+      const totalSupply = await nftContract.totalSupply();
+
+      const claimable = await nftContract.claimable(address);
+      const price = await nftContract.CHIBI_PRICE();
+      const maxSupply = await nftContract.MAX_CHIBI();
+
+      setMaxSupply(maxSupply.toNumber());
+
+      setIsClaimable(claimable);
+      setPrice(price.toNumber());
+      setTotalSupply(totalSupply.toNumber());
+
+      setConnecting(false);
+    } catch (e) {
+      console.log({ e });
 
       setErr(e?.data ?? e);
     }
@@ -306,13 +358,6 @@ export default function Home() {
 
   React.useEffect(() => {
     async function handleChangNetwork() {
-      // console.log({
-      //   handleChangNetwork: chainId,
-      //   window: typeof window,
-      //   ethereum: window?.ethereum,
-      //   connected,
-      //   check: chainId !== parseInt(process.env.NEXT_PUBLIC_CHAIN_ID, 10),
-      // });
       try {
         if (
           typeof window !== 'undefined' &&
@@ -321,13 +366,6 @@ export default function Home() {
           connected
         ) {
           resetApp();
-          // await window.ethereum.request({
-          //   method: 'wallet_switchEthereumChain',
-          //   params: [{ chainId: `0x${process.env.NEXT_PUBLIC_CHAIN_ID}` }], // chainId must be in hexadecimal numbers
-          // });
-
-          // setChainId(parseInt(process.env.NEXT_PUBLIC_CHAIN_ID, 10));
-          // onConnect();
         }
       } catch (error) {
         console.log({ error });
@@ -340,7 +378,22 @@ export default function Home() {
 
   return (
     <>
-      <MintModal show={showModal} onClose={handleCloseModal} />
+      <MintModal
+        onConnect={onConnect}
+        setAmount={setAmount}
+        amount={amount}
+        open={showModal}
+        onClose={handleCloseModal}
+        connected={connected}
+        connecting={connecting}
+        price={price}
+        web3={web3}
+        claimable={isClaimable}
+        totalSupply={totalSupply}
+        maxSupply={maxSupply}
+        onMint={mint}
+        minting={minting}
+      />
       <ContentContainer>
         <Main>
           <Video autoPlay="autoplay" muted loop>
@@ -348,12 +401,12 @@ export default function Home() {
           </Video>
           <NavBar />
           <Container>
-            <MintButton onClick={handleClickMint} />
+            <MintButton onClick={onOpen} />
             {/* <Title>Coming Soon...</Title> */}
           </Container>
         </Main>
         <ContentContainer>
-          <About onClick={handleClickMint} />
+          <About onClick={onOpen} />
           {/* <Features />
         <Marketplace />
         <Chibi /> */}
