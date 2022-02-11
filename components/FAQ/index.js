@@ -171,7 +171,7 @@ const FAQ = () => {
             onClick={handleClick('2')}
             open={qNo === '2'}
             q="When do Chibiverse launch?"
-            a="TBA"
+            a="28 FEB 2022 1PM UTC"
           />
           <FAQItem
             onClick={handleClick('3')}
