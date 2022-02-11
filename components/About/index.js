@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { useRouter } from 'next/router';
 import { Row, Col, Slider } from 'antd';
 import MintButton from '../MintBtn';
 
@@ -62,7 +62,8 @@ const Paragraph = styled.p`
   }
 `;
 
-const About = () => {
+const About = ({ onClick = () => {} }) => {
+  const router = useRouter();
   return (
     <Section id="about">
       <Row gutter={[48, 48]}>
@@ -74,6 +75,10 @@ const About = () => {
             style={{
               marginTop: '0px',
               marginLeft: '0px',
+            }}
+            onClick={() => {
+              router.push('/#about');
+              onClick();
             }}
           />
         </ContentWrapper>

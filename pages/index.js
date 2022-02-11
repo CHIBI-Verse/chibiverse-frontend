@@ -3,6 +3,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
+import MintModal from '../components/MintModal';
 import { ethers } from 'ethers';
 import Web3Modal from 'web3modal';
 // @ts-ignore
@@ -240,6 +241,7 @@ export default function Home() {
       if (web3 && web3.currentProvider && web3.currentProvider.close) {
         await web3.currentProvider.close();
       }
+      setShowModal(false);
       setFetching(false);
       setAddress('');
       setWeb3(null);
@@ -263,22 +265,32 @@ export default function Home() {
       }
 
       setFetching(true);
+      setShowModal(true);
+      // const claimable = await nftContract.claimable(address);
+      // let price = await nftContract.CHIBI_PRICE();
+      // price = price.toNumber();
 
-      const claimable = await nftContract.claimable(address);
-      let price = await nftContract.CHIBI_PRICE();
-      price = price.toNumber();
+      // console.log({ price, claimable, nftContract });
 
-      console.log({ price, claimable, nftContract });
+      // const options = { value: price * amount };
+      // await nftContract.mint(amount, options);
 
-      const options = { value: price * amount };
-      await nftContract.mint(amount, options);
-
-      const walletOfOwner = await nftContract.walletOfOwner(address);
-      console.log({ walletOfOwner });
+      // const walletOfOwner = await nftContract.walletOfOwner(address);
+      // console.log({ walletOfOwner });
 
       setFetching(false);
     } catch (e) {
       setFetching(false);
+      console.error({ e });
+
+      setErr(e?.data ?? e);
+    }
+  };
+
+  const handleCloseModal = async () => {
+    try {
+      setShowModal(false);
+    } catch (e) {
       console.error({ e });
 
       setErr(e?.data ?? e);
@@ -327,24 +339,26 @@ export default function Home() {
   }, [chainId]);
 
   return (
-    <ContentContainer>
-      <Main>
-        <Video autoPlay="autoplay" muted loop>
-          <source src="/video/main.mp4" type="video/mp4" />
-        </Video>
-        <NavBar />
-        <Container>
-          <MintButton onClick={handleClickMint} />
-          {/* <Title>Coming Soon...</Title> */}
-        </Container>
-      </Main>
-      {/* <ContentContainer>
-        <About />
-        <Features />
-        <Marketplace />
-        <Chibi />
-      </ContentContainer>
+    <>
+      <MintModal show={showModal} onClose={handleCloseModal} />
       <ContentContainer>
+        <Main>
+          <Video autoPlay="autoplay" muted loop>
+            <source src="/video/main.mp4" type="video/mp4" />
+          </Video>
+          <NavBar />
+          <Container>
+            <MintButton onClick={handleClickMint} />
+            {/* <Title>Coming Soon...</Title> */}
+          </Container>
+        </Main>
+        <ContentContainer>
+          <About onClick={handleClickMint} />
+          {/* <Features />
+        <Marketplace />
+        <Chibi /> */}
+        </ContentContainer>
+        {/* <ContentContainer>
         <Carousel />
         <GamePlay />
         <GameDemo />
@@ -355,6 +369,7 @@ export default function Home() {
         <FAQ />
         <Footer />
       </ContentContainer> */}
-    </ContentContainer>
+      </ContentContainer>
+    </>
   );
 }
