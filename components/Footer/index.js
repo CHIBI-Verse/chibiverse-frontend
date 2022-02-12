@@ -147,8 +147,14 @@ const Marketplace = () => {
               </a>
             </ContentWrapper>
             <ContentWrapper style={{ cursor: 'pointer' }} span={8}>
-              <ContentImage src="/images/Opensea.png" alt="opensea" />
-              <Paragraph style={{ padding: 0 }}>Opensea</Paragraph>
+              <a
+                href="https://opensea.io/collection/chibiverse"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <ContentImage src="/images/Opensea.png" alt="opensea" />
+                <Paragraph style={{ padding: 0 }}>Opensea</Paragraph>
+              </a>
             </ContentWrapper>
             <ContentWrapper style={{ cursor: 'pointer' }} span={8}>
               <a
