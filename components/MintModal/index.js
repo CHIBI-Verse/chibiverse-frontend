@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import _ from 'lodash';
+import moment from 'moment';
 import { Spin, Button } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 
@@ -214,6 +215,23 @@ const MintModal = ({
   }, [open]);
 
   const renderForm = () => {
+    if (moment().isBefore(moment(process.env.NEXT_PUBLIC_RELEASE_DATE))) {
+      return (
+        <>
+          <H4>Begin At</H4>
+          <Form>
+            <FormBody>
+              <PurchaseBtn style={{ minWidth: '250px', marginTop: '0px' }}>
+                {moment(process.env.NEXT_PUBLIC_RELEASE_DATE).format(
+                  'DD MMM YYYY HH:mm',
+                )}
+              </PurchaseBtn>
+            </FormBody>
+          </Form>
+        </>
+      );
+    }
+
     if (connecting) {
       return (
         <Spin
