@@ -195,7 +195,7 @@ const FAQ = () => {
             onClick={handleClick('6')}
             open={qNo === '6'}
             q="What is the maximum mint per wallet?"
-            a="No limit."
+            a="No limit. 20 Chibi per Transactions."
           />
           <FAQItem
             onClick={handleClick('7')}

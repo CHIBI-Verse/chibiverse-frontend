@@ -19,7 +19,11 @@ const BaseModal = styled.div`
   align-items: flex-start;
   background: #0006;
   visibility: ${(props) => (props?.open ? 'visible' : 'hidden')};
-  transition: visibility 0s linear 300ms, opacity 400ms;
+  /* transition: visibility 0s linear 300ms, opacity 400ms; */
+  opacity: ${({ open }) => (open ? 1 : 0)};
+  pointer-events: ${({ open }) => (open ? 'auto' : 'none')};
+  will-change: opacity;
+  transition: opacity 0.1s ease-in-out;
 `;
 
 const Modal = styled.div`
@@ -113,7 +117,8 @@ const QuantityItem = styled.div`
   padding: 0.5rem 1rem;
   text-align: center;
   cursor: pointer;
-  background: ${(props) => (props?.active ? '#ee6226' : '#fff')};
+  background: ${(props) => (props?.active ? '#548FDC' : '#fff')};
+  /* background: ${(props) => (props?.active ? '#ee6226' : '#fff')}; */
   color: ${(props) => (props?.active ? 'hsla(0, 0%, 100%, 0.9)' : '#000')}; ;
 `;
 
@@ -140,7 +145,8 @@ const InputDecoration = styled.span`
   top: 1.25rem;
   right: 0.5rem;
   margin-left: -3rem;
-  color: #ee6226;
+  /* color: #ee6226; */
+  color: #548fdc;
   font-size: 0.8125rem;
   cursor: pointer;
   float: right !important;
@@ -149,7 +155,8 @@ const InputDecoration = styled.span`
 const PurchaseBtn = styled.button`
   font-family: marvinregular;
   font-weight: 700;
-  background: #ee6226;
+  /* background: #ee6226; */
+  background: #548fdc;
   color: hsla(0, 0%, 100%, 0.9);
   padding: 0.5rem 1.5rem;
   display: inline-block;
@@ -176,15 +183,24 @@ const MintModal = ({
   web3,
   price,
   claimable,
+  onClaim = () => {},
   onMint = () => {},
   minting,
   maxSupply,
+  isMinted,
+  setIsMinted,
 }) => {
   const [cur, setCur] = useState(2);
+  const [selectMint, setSelectMint] = useState(false);
+
+  const handleClose = () => {
+    setSelectMint(false);
+    onClose();
+  };
 
   const wrapperRef = useRef(null);
 
-  useOnClickOutside(wrapperRef, onClose);
+  useOnClickOutside(wrapperRef, handleClose);
 
   const handleClickQuantityItem = (n) => () => {
     setAmount(n);
@@ -197,11 +213,151 @@ const MintModal = ({
     }
   }, [open]);
 
+  const renderForm = () => {
+    if (connecting) {
+      return (
+        <Spin
+          style={{ display: 'block', margin: '1rem auto 0' }}
+          indicator={antIcon}
+        />
+      );
+    }
+
+    if (!connected) {
+      return (
+        <Form>
+          <FormBody>
+            <PurchaseBtn onClick={onConnect} style={{ minWidth: '250px' }}>
+              Connect Wallet
+            </PurchaseBtn>
+          </FormBody>
+        </Form>
+      );
+    }
+
+    if (isMinted) {
+      return (
+        <>
+          <Form>
+            <FormBody>
+              <PurchaseBtn
+                onClick={() => setIsMinted(false)}
+                style={{ minWidth: '250px' }}
+              >
+                Continue Minting
+              </PurchaseBtn>
+            </FormBody>
+          </Form>
+        </>
+      );
+    }
+
+    if (claimable && !selectMint) {
+      return (
+        <>
+          <H4>{`${totalSupply.toLocaleString()}/${maxSupply.toLocaleString()}`}</H4>
+          {minting ? (
+            <Spin
+              style={{ display: 'block', margin: '1rem auto 0' }}
+              indicator={antIconSm}
+            />
+          ) : (
+            <Form>
+              <FormBody>
+                <PurchaseBtn onClick={onClaim} style={{ minWidth: '250px' }}>
+                  Claim Giveaway
+                </PurchaseBtn>
+
+                <H5 style={{ marginTop: '10px' }}>or</H5>
+                <PurchaseBtn
+                  onClick={() => setSelectMint(true)}
+                  style={{ minWidth: '250px', marginTop: '5px' }}
+                >
+                  Purchase
+                </PurchaseBtn>
+              </FormBody>
+            </Form>
+          )}
+        </>
+      );
+    }
+
+    return (
+      <>
+        <H4>{`${totalSupply.toLocaleString()}/${maxSupply.toLocaleString()}`}</H4>
+        <div style={{ textAlign: 'center' }}>{`${web3.utils.fromWei(
+          _.toString(price),
+          'ether',
+        )} ETH each`}</div>
+        <Form>
+          <FormBody>
+            <Quantity>
+              <QuantityItem
+                active={
+                  _.toSafeInteger(amount) === 1 && _.toSafeInteger(cur) === 1
+                }
+                onClick={handleClickQuantityItem(1)}
+              >
+                1
+              </QuantityItem>
+              <QuantityItem
+                active={
+                  _.toSafeInteger(amount) === 2 && _.toSafeInteger(cur) === 2
+                }
+                onClick={handleClickQuantityItem(2)}
+              >
+                2
+              </QuantityItem>
+              <QuantityItem
+                active={
+                  _.toSafeInteger(amount) === 5 && _.toSafeInteger(cur) === 5
+                }
+                onClick={handleClickQuantityItem(5)}
+              >
+                5
+              </QuantityItem>
+              <QuantityItem
+                active={
+                  _.toSafeInteger(amount) === 10 && _.toSafeInteger(cur) === 10
+                }
+                onClick={handleClickQuantityItem(10)}
+              >
+                10
+              </QuantityItem>
+            </Quantity>
+            <InputWrapper>
+              <Input
+                type="text"
+                min="1"
+                max="20"
+                placeholder="Insert custom amount"
+                value={amount}
+                onChange={(e) => {
+                  setAmount(e?.target?.value);
+                  setCur(0);
+                }}
+              />
+              <InputDecoration>Max. 20</InputDecoration>
+            </InputWrapper>
+            {minting ? (
+              <Spin
+                style={{ display: 'block', margin: '1rem auto 0' }}
+                indicator={antIconSm}
+              />
+            ) : (
+              <PurchaseBtn onClick={onMint}>Purchase</PurchaseBtn>
+            )}
+          </FormBody>
+        </Form>
+      </>
+    );
+  };
+
   return (
     <BaseModal open={open}>
       <Modal ref={wrapperRef}>
         <Body>
-          <Close onClick={onClose}>
+          <Close onClick={handleClose}>
             <Svg
               aria-hidden="true"
               focusable="false"
@@ -224,7 +380,8 @@ const MintModal = ({
           <H3>
             <b>Mint CHiBI</b>
           </H3>
-          {connecting ? (
+          {renderForm()}
+          {/* {connecting ? (
             <Spin
               style={{ display: 'block', margin: '1rem auto 0' }}
               indicator={antIcon}
@@ -321,7 +478,7 @@ const MintModal = ({
                 </PurchaseBtn>
               </FormBody>
             </Form>
-          )}
+          )} */}
         </Body>
       </Modal>
     </BaseModal>

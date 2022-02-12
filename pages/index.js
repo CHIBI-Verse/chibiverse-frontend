@@ -3,7 +3,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import styled from 'styled-components';
 import NavBar from '../components/NavBar';
-
+import { Button, notification, Space } from 'antd';
 import { BigNumber, ethers } from 'ethers';
 import Web3Modal from 'web3modal';
 // @ts-ignore
@@ -93,6 +93,13 @@ const ContentContainer = styled.div`
   min-height: 100vh;
 `;
 
+const openNotification = (title, message) => {
+  notification.error({
+    message: title,
+    description: message,
+  });
+};
+
 function initWeb3(provider) {
   const web3 = new Web3(provider);
 
@@ -169,6 +176,7 @@ export default function Home() {
   const [isClaimable, setIsClaimable] = React.useState();
   const [totalSupply, setTotalSupply] = React.useState(0);
   const [maxSupply, setMaxSupply] = React.useState(0);
+  const [isMinted, setIsMinted] = React.useState(false);
 
   const onConnect = async () => {
     if (connected && provider && web3 && address) return;
@@ -235,7 +243,8 @@ export default function Home() {
     } catch (e) {
       console.log({ e });
       setConnecting(false);
-      setErr(e?.data ?? e);
+      openNotification(e?.code ?? 'Error', e?.error?.message ?? e?.message);
+
       resetApp();
     }
   };
@@ -272,7 +281,7 @@ export default function Home() {
       setIsOwner(false);
       await web3Modal?.clearCachedProvider();
     } catch (e) {
-      setErr(e?.data ?? e);
+      openNotification(e?.code ?? 'Error', e?.error?.message ?? e?.message);
     }
   };
 
@@ -283,7 +292,7 @@ export default function Home() {
       // setFetching(false);
       console.error({ e });
 
-      setErr(e?.data ?? e);
+      openNotification(e?.code ?? 'Error', e?.error?.message ?? e?.message);
     }
   };
 
@@ -295,18 +304,39 @@ export default function Home() {
       const options = { value: each.mul(amount).toString() };
       await nftContract.mint(amount, options);
 
-      // const walletOfOwner = await nftContract.walletOfOwner(address);
-      // console.log({ walletOfOwner });
+      const walletOfOwner = await nftContract.walletOfOwner(address);
+      console.log({ walletOfOwner });
 
       const totalSupply = await nftContract.totalSupply();
       setTotalSupply(totalSupply.toNumber());
       setMinting(false);
-      setShowModal(false);
+      setIsMinted(true);
     } catch (e) {
-      // setFetching(false);
       console.error({ e });
       setMinting(false);
-      setErr(e?.data ?? e);
+
+      openNotification(e?.code ?? 'Error', e?.error?.message ?? e?.message);
+    }
+  };
+
+  const claim = async () => {
+    setMinting(true);
+    try {
+      await nftContract.claim();
+
+      const walletOfOwner = await nftContract.walletOfOwner(address);
+      console.log({ walletOfOwner });
+
+      const totalSupply = await nftContract.totalSupply();
+      setTotalSupply(totalSupply.toNumber());
+      setMinting(false);
+      setIsMinted(true);
+      setIsClaimable(false);
+    } catch (e) {
+      console.error({ e });
+      setMinting(false);
+
+      openNotification(e?.code ?? 'Error', e?.error?.message ?? e?.message);
     }
   };
 
@@ -335,7 +365,7 @@ export default function Home() {
     } catch (e) {
       console.log({ e });
 
-      setErr(e?.data ?? e);
+      openNotification(e?.code ?? 'Error', e?.error?.message ?? e?.message);
     }
   };
 
@@ -345,7 +375,7 @@ export default function Home() {
     } catch (e) {
       console.error({ e });
 
-      setErr(e?.data ?? e);
+      openNotification(e?.code ?? 'Error', e?.error?.message ?? e?.message);
     }
   };
 
@@ -367,8 +397,9 @@ export default function Home() {
         ) {
           resetApp();
         }
-      } catch (error) {
-        console.log({ error });
+      } catch (e) {
+        console.log({ e });
+        openNotification(e?.code ?? 'Error', e?.error?.message ?? e?.message);
         resetApp();
       }
     }
@@ -391,8 +422,11 @@ export default function Home() {
         claimable={isClaimable}
         totalSupply={totalSupply}
         maxSupply={maxSupply}
+        onClaim={claim}
         onMint={mint}
         minting={minting}
+        isMinted={isMinted}
+        setIsMinted={setIsMinted}
       />
       <ContentContainer>
         <Main>
@@ -407,21 +441,21 @@ export default function Home() {
         </Main>
         <ContentContainer>
           <About onClick={onOpen} />
-          {/* <Features />
-        <Marketplace />
-        <Chibi /> */}
+          <Features />
+          <Marketplace />
+          <Chibi />
         </ContentContainer>
-        {/* <ContentContainer>
-        <Carousel />
-        <GamePlay />
-        <GameDemo />
-        <RoadMap />
-        <RoadMapProgress />
-        <Future />
-        <Team />
-        <FAQ />
-        <Footer />
-      </ContentContainer> */}
+        <ContentContainer>
+          <Carousel />
+          <GamePlay />
+          <GameDemo />
+          <RoadMap />
+          <RoadMapProgress />
+          <Future />
+          <Team />
+          <FAQ />
+          <Footer />
+        </ContentContainer>
       </ContentContainer>
     </>
   );
