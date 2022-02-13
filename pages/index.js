@@ -339,6 +339,7 @@ export default function Home() {
   };
 
   const onOpen = async () => {
+    setAmount(2);
     if (!connected || !provider || !web3 || !address) {
       setShowModal(true);
       return;

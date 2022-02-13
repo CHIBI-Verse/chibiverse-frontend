@@ -38,6 +38,7 @@ const ContentWrapper = styled(Col)`
   width: 100%;
   height: 600px;
   max-width: 1080px;
+  margin-top: 50px;
 `;
 
 const Video = styled.video`
@@ -148,7 +149,7 @@ const PlayBtn = styled.button`
   width: 250px;
   height: 80px;
   font-size: 2rem;
-  opacity: 0.8;
+  /* opacity: 0.8; */
 
   @media (max-width: 1168px) {
     display: none;
@@ -156,7 +157,8 @@ const PlayBtn = styled.button`
 `;
 
 const Link = styled.a`
-  position: absolute;
+  /* position: absolute; */
+  margin-top: 20px;
 `;
 
 const GamePlay = ({ onPlay = () => {}, playDemo }) => {
@@ -178,7 +180,7 @@ const GamePlay = ({ onPlay = () => {}, playDemo }) => {
             </Carousel.Item>
           </Carousel>
           <Link href="/demo" target="_blank" rel="noreferrer">
-            <PlayBtn>Play</PlayBtn>
+            <PlayBtn>Play Demo</PlayBtn>
           </Link>
         </ContentWrapper>
       </Row>
