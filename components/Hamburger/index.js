@@ -47,13 +47,13 @@ const StyledMenu = styled.nav`
 const Menu = ({ open, setOpen }) => {
   return (
     <StyledMenu open={open}>
-      <Link href="#about">ABOUT</Link>
-      <Link href="#features">FEATURES</Link>
-      <Link href="#marketplace">MARKETPLACE</Link>
-      <Link href="#chibi">CHIBI</Link>
-      <Link href="#road_map">ROAD MAP</Link>
-      <Link href="#team">TEAM</Link>
-      <Link href="#faq">FAQ</Link>
+      <Link href="/#about">ABOUT</Link>
+      <Link href="/#features">FEATURES</Link>
+      <Link href="/#marketplace">MARKETPLACE</Link>
+      <Link href="/#chibi">CHIBI</Link>
+      <Link href="/#road_map">ROAD MAP</Link>
+      <Link href="/#team">TEAM</Link>
+      <Link href="/#faq">FAQ</Link>
     </StyledMenu>
   );
 };

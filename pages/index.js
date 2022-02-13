@@ -30,9 +30,7 @@ const Carousel = dynamic(() => import('../components/Carousel'), {
 const GamePlay = dynamic(() => import('../components/GamePlay'), {
   ssr: false,
 });
-const GameDemo = dynamic(() => import('../components/GameDemo'), {
-  ssr: false,
-});
+
 const Team = dynamic(() => import('../components/Team'), {
   ssr: false,
 });
@@ -448,7 +446,6 @@ export default function Home() {
         <ContentContainer>
           <Carousel />
           <GamePlay />
-          <GameDemo />
           <RoadMap />
           <RoadMapProgress />
           <Future />

@@ -63,25 +63,25 @@ const NavBar = () => {
         <HamburgerMenu />
         <NavLinks>
           <li>
-            <Link href="#about">ABOUT</Link>
+            <Link href="/#about">ABOUT</Link>
           </li>
           <li>
-            <Link href="#features">FEATURES</Link>
+            <Link href="/#features">FEATURES</Link>
           </li>
           <li>
-            <Link href="#marketplace">MARKETPLACE</Link>
+            <Link href="/#marketplace">MARKETPLACE</Link>
           </li>
           <li>
-            <Link href="#chibi">CHIBI</Link>
+            <Link href="/#chibi">CHIBI</Link>
           </li>
           <li>
-            <Link href="#road_map">ROAD MAP</Link>
+            <Link href="/#road_map">ROAD MAP</Link>
           </li>
           <li>
-            <Link href="#team">TEAM</Link>
+            <Link href="/#team">TEAM</Link>
           </li>
           <li>
-            <Link href="#faq">FAQ</Link>
+            <Link href="/#faq">FAQ</Link>
           </li>
         </NavLinks>
       </NavNavigation>

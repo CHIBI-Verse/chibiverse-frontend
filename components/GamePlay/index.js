@@ -36,6 +36,8 @@ const ContentWrapper = styled(Col)`
   justify-content: center;
   align-items: center;
   width: 100%;
+  height: 600px;
+  max-width: 1080px;
 `;
 
 const Video = styled.video`
@@ -126,7 +128,38 @@ const FooterWrapper = styled(Col)`
   margin: 50px 0px 0px;
 `;
 
-const GamePlay = () => {
+const PlayBtn = styled.button`
+  /* position: absolute; */
+  z-index: 4;
+  font-family: marvinregular;
+  font-weight: 700;
+  background: #ee6226;
+  /* background: #548fdc; */
+  color: hsla(0, 0%, 100%, 0.9);
+  padding: 0.5rem 1.5rem;
+  display: inline-block;
+  margin: 1rem auto 0;
+  border: 0;
+  text-decoration: none;
+  border-radius: 2rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.1s;
+  width: 250px;
+  height: 80px;
+  font-size: 2rem;
+  opacity: 0.8;
+
+  @media (max-width: 1168px) {
+    display: none;
+  }
+`;
+
+const Link = styled.a`
+  position: absolute;
+`;
+
+const GamePlay = ({ onPlay = () => {}, playDemo }) => {
   return (
     <Section>
       <Row style={{ marginTop: '40px' }} gutter={[48, 0]}>
@@ -134,7 +167,7 @@ const GamePlay = () => {
           <TitleImage src="/images/gameplay.png" alt="gameplay" />
         </TitleWrapper>
       </Row>
-      <Row gutter={[0, 0]}>
+      <Row style={{ justifyContent: 'center' }} gutter={[0, 0]}>
         <ContentWrapper span={24}>
           <Carousel hideArrow cols={1} rows={1} gap={50} loop autoplay={3000}>
             <Carousel.Item>
@@ -144,6 +177,9 @@ const GamePlay = () => {
               <img width="100%" src="/images/game2.jpg" />
             </Carousel.Item>
           </Carousel>
+          <Link href="/demo" target="_blank" rel="noreferrer">
+            <PlayBtn>Play</PlayBtn>
+          </Link>
         </ContentWrapper>
       </Row>
     </Section>
