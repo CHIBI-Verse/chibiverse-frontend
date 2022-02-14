@@ -2084,6 +2084,11 @@
     "object-assign" "^4"
     "vary" "^1"
 
+"countdown@^2.6.0", "countdown@>= 2.3.0":
+  "integrity" "sha1-Z3+446nUzE52QVkBuiU7UYrzQXc="
+  "resolved" "https://registry.npmjs.org/countdown/-/countdown-2.6.0.tgz"
+  "version" "2.6.0"
+
 "crc-32@^1.2.0":
   "integrity" "sha512-Dn/xm/1vFFgs3nfrpEVScHoIslO9NZRITWGz/1E/St6u4xw99vfZzVkW0OSnzx2h9egej9xwMCEut6sqwokM/w=="
   "resolved" "https://registry.npmjs.org/crc-32/-/crc-32-1.2.1.tgz"
@@ -4519,7 +4524,15 @@
   "resolved" "https://registry.npmjs.org/mock-fs/-/mock-fs-4.14.0.tgz"
   "version" "4.14.0"
 
-"moment@^2.24.0", "moment@^2.25.3":
+"moment-countdown@^0.0.3":
+  "integrity" "sha1-kxAMkqpv2IS4SoOBTr3Na4fzOI0="
+  "resolved" "https://registry.npmjs.org/moment-countdown/-/moment-countdown-0.0.3.tgz"
+  "version" "0.0.3"
+  dependencies:
+    "countdown" ">= 2.3.0"
+    "moment" ">= 2.0.0"
+
+"moment@^2.24.0", "moment@^2.25.3", "moment@>= 2.0.0", "moment@>=1.6.0":
   "integrity" "sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ=="
   "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz"
   "version" "2.29.1"
@@ -5676,6 +5689,18 @@
   "integrity" "sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w=="
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz"
   "version" "17.0.2"
+
+"react-moment-countdown@^0.4.2":
+  "integrity" "sha512-Xa9KYLMB9mpnrqM98YU5oZwEhaCCLIaNns+Cxa8jXO9KF30Ans40t3u6A5n4d49ofbPh2cDFsenCgL3lIGcgDw=="
+  "resolved" "https://registry.npmjs.org/react-moment-countdown/-/react-moment-countdown-0.4.2.tgz"
+  "version" "0.4.2"
+
+"react-moment-proptypes@^1.8.1":
+  "integrity" "sha512-Er940DxWoObfIqPrZNfwXKugjxMIuk1LAuEzn23gytzV6hKS/sw108wibi9QubfMN4h+nrlje8eUCSbQRJo2fQ=="
+  "resolved" "https://registry.npmjs.org/react-moment-proptypes/-/react-moment-proptypes-1.8.1.tgz"
+  "version" "1.8.1"
+  dependencies:
+    "moment" ">=1.6.0"
 
 "react-refresh@0.8.3":
   "integrity" "sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg=="

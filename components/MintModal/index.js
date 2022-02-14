@@ -4,8 +4,9 @@ import _ from 'lodash';
 import moment from 'moment';
 import { Spin, Button } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-
+import Clock from '../Clock';
 import { useOnClickOutside } from '../../hooks';
+import formatDate from '../../utils/format-date.js';
 const antIcon = <LoadingOutlined style={{ fontSize: 36 }} spin />;
 const antIconSm = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 const BaseModal = styled.div`
@@ -193,6 +194,9 @@ const MintModal = ({
 }) => {
   const [cur, setCur] = useState(2);
   const [selectMint, setSelectMint] = useState(false);
+  const [curDate, setCurDate] = useState(moment());
+  const [timeObj, setTimeObj] = useState({});
+  const intervalRef = useRef(null);
 
   const handleClose = () => {
     setSelectMint(false);
@@ -214,20 +218,40 @@ const MintModal = ({
     }
   }, [open]);
 
+  const handleCountdown = () => {
+    const nowT = moment();
+    const targetDay = moment(process.env.NEXT_PUBLIC_RELEASE_DATE);
+
+    const timeObj = formatDate(targetDay);
+
+    setCurDate(moment());
+    setTimeObj(timeObj);
+    // console.log('handleCountdown');
+    if (!nowT.isBefore(targetDay)) {
+      console.log('clear');
+      clearInterval(intervalRef.current);
+    }
+  };
+
+  useEffect(() => {
+    intervalRef.current = setInterval(handleCountdown, 1000);
+
+    return () => {
+      clearInterval(intervalRef.current);
+    };
+  }, []);
+
   const renderForm = () => {
-    if (moment().isBefore(moment(process.env.NEXT_PUBLIC_RELEASE_DATE))) {
+    if (curDate.isBefore(moment(process.env.NEXT_PUBLIC_RELEASE_DATE))) {
       return (
         <>
-          <H4>Begin At</H4>
-          <Form>
-            <FormBody>
-              <PurchaseBtn style={{ minWidth: '250px', marginTop: '0px' }}>
-                {moment(process.env.NEXT_PUBLIC_RELEASE_DATE).format(
-                  'DD MMM YYYY HH:mm',
-                )}
-              </PurchaseBtn>
-            </FormBody>
-          </Form>
+          <H4>start in</H4>
+          <Clock
+            d={timeObj?.count_days ?? 0}
+            h={timeObj?.count_hours ?? 0}
+            m={timeObj?.count_minutes ?? 0}
+            s={timeObj?.count_seconds ?? 0}
+          />
         </>
       );
     }

@@ -152,8 +152,10 @@ const Marketplace = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <ContentImage src="/images/Opensea.png" alt="opensea" />
-                <Paragraph style={{ padding: 0 }}>Opensea</Paragraph>
+                <ContentWrapper>
+                  <ContentImage src="/images/Opensea.png" alt="opensea" />
+                  <Paragraph style={{ padding: 0 }}>Opensea</Paragraph>
+                </ContentWrapper>
               </a>
             </ContentWrapper>
             <ContentWrapper style={{ cursor: 'pointer' }} span={8}>
