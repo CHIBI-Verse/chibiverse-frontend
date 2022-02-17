@@ -87,7 +87,7 @@ const Container = styled.div`
 const Title = styled.h1`
   color: #fff;
   font-family: marvinregular;
-  font-size: 2.5vmin;
+  font-size: 4vmin;
 
   /* @media (max-width: 1168px) {
     font-size: 5vmin;

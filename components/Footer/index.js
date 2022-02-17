@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { Row, Col, Slider } from 'antd';
-import MintButton from '../MintBtn';
+import moment from 'moment';
 
 const Section = styled.section`
   position: relative;
@@ -147,16 +147,25 @@ const Marketplace = () => {
               </a>
             </ContentWrapper>
             <ContentWrapper style={{ cursor: 'pointer' }} span={8}>
-              <a
-                href="https://opensea.io/collection/chibiverse"
-                target="_blank"
-                rel="noreferrer"
-              >
+              {moment().isBefore(
+                moment(process.env.NEXT_PUBLIC_RELEASE_DATE).add(1, 'hours'),
+              ) ? (
                 <ContentWrapper>
                   <ContentImage src="/images/Opensea.png" alt="opensea" />
                   <Paragraph style={{ padding: 0 }}>Opensea</Paragraph>
                 </ContentWrapper>
-              </a>
+              ) : (
+                <a
+                  href={process.env.NEXT_PUBLIC_OPENSEA_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <ContentWrapper>
+                    <ContentImage src="/images/Opensea.png" alt="opensea" />
+                    <Paragraph style={{ padding: 0 }}>Opensea</Paragraph>
+                  </ContentWrapper>
+                </a>
+              )}
             </ContentWrapper>
             <ContentWrapper style={{ cursor: 'pointer' }} span={8}>
               <a
