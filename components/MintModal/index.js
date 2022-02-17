@@ -36,7 +36,8 @@ const Modal = styled.div`
   position: relative;
   max-width: 100%;
   z-index: 3;
-  margin-top: 430px;
+  /* margin-top: 430px; */
+  margin-top: 40vh;
 `;
 
 const Body = styled.div`

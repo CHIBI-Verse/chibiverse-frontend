@@ -52,22 +52,52 @@ const Video = styled.video`
   @media (min-width: 1200px) {
     object-fit: fill;
   }
+
+  @media (max-width: 1440px) {
+    transform: translateX(0px);
+    width: calc(100vw + 20px);
+  }
+
+  @media (max-width: 1200px) {
+    transform: translateX(0px);
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    transform: translateX(-90px);
+    width: calc(100vw + 90px);
+  }
 `;
 
 const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   position: absolute;
-  top: 0;
+  top: 90px;
   justify-content: center;
   align-items: center;
+  left: 40px;
+  @media (max-width: 1024px) {
+    left: 0px;
+  }
 `;
 
-const Title = styled.h2`
+const Title = styled.h1`
   color: #fff;
   font-family: marvinregular;
-  margin-top: 360px;
+  font-size: 2.5vmin;
+
+  /* @media (max-width: 1168px) {
+    font-size: 5vmin;
+  } */
+
+  @media (max-width: 768px) {
+    font-size: 4vmin;
+  }
+
+  /* margin-top: 360px;
   margin-left: 80px;
 
   font-size: 3.6vw;
@@ -79,7 +109,7 @@ const Title = styled.h2`
     margin-top: 160px;
     margin-left: 20px;
     font-size: 10vw;
-  }
+  } */
 `;
 
 const ContentContainer = styled.div`
@@ -136,7 +166,7 @@ if (typeof window !== 'undefined') {
   web3Modal = new Web3Modal({
     network: 'mainnet',
     cacheProvider: true,
-    providerOptions: getProviderOptions(),
+    // providerOptions: getProviderOptions(),
   });
 }
 
@@ -170,10 +200,10 @@ export default function Home() {
   const [toAddress, setToAddress] = React.useState('');
   const [sendToken, setSendToken] = React.useState('');
   const [amount, setAmount] = React.useState(2);
-  const [price, setPrice] = React.useState();
+  const [price, setPrice] = React.useState(6000000000000000);
   const [isClaimable, setIsClaimable] = React.useState();
   const [totalSupply, setTotalSupply] = React.useState(0);
-  const [maxSupply, setMaxSupply] = React.useState(0);
+  const [maxSupply, setMaxSupply] = React.useState(10000);
   const [isMinted, setIsMinted] = React.useState(false);
 
   const onConnect = async () => {
@@ -222,13 +252,12 @@ export default function Home() {
 
       const totalSupply = await nftContract.totalSupply();
 
-      const claimable = await nftContract.claimable(address);
-      const price = await nftContract.CHIBI_PRICE();
-      const maxSupply = await nftContract.MAX_CHIBI();
+      // const price = await nftContract.CHIBI_PRICE();
+      // const maxSupply = await nftContract.MAX_CHIBI();
 
-      setMaxSupply(maxSupply.toNumber());
-      setIsClaimable(claimable);
-      setPrice(price.toNumber());
+      // setMaxSupply(maxSupply.toNumber());
+
+      // setPrice(price.toNumber());
       setTotalSupply(totalSupply.toNumber());
       setNftContract(nftContract);
       setWeb3Provider(web3Provider);
@@ -302,9 +331,6 @@ export default function Home() {
       const options = { value: each.mul(amount).toString() };
       await nftContract.mint(amount, options);
 
-      const walletOfOwner = await nftContract.walletOfOwner(address);
-      console.log({ walletOfOwner });
-
       const totalSupply = await nftContract.totalSupply();
       setTotalSupply(totalSupply.toNumber());
       setMinting(false);
@@ -350,14 +376,13 @@ export default function Home() {
     try {
       const totalSupply = await nftContract.totalSupply();
 
-      const claimable = await nftContract.claimable(address);
-      const price = await nftContract.CHIBI_PRICE();
-      const maxSupply = await nftContract.MAX_CHIBI();
+      // const price = await nftContract.CHIBI_PRICE();
+      // console.log({ price: price.toNumber() });
+      // const maxSupply = await nftContract.MAX_CHIBI();
+      // console.log({ maxSupply: maxSupply.toNumber() });
+      // setMaxSupply(maxSupply.toNumber());
 
-      setMaxSupply(maxSupply.toNumber());
-
-      setIsClaimable(claimable);
-      setPrice(price.toNumber());
+      // setPrice(price.toNumber());
       setTotalSupply(totalSupply.toNumber());
 
       setConnecting(false);
@@ -434,6 +459,7 @@ export default function Home() {
           </Video>
           <NavBar />
           <Container>
+            <Title>Mint Price: 0.006 ETH</Title>
             <MintButton onClick={onOpen} />
             {/* <Title>Coming Soon...</Title> */}
           </Container>
