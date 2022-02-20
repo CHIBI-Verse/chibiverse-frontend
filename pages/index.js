@@ -78,7 +78,7 @@ const Container = styled.div`
   top: 90px;
   justify-content: center;
   align-items: center;
-  left: 40px;
+  left: 30px;
   @media (max-width: 1024px) {
     left: 0px;
   }
