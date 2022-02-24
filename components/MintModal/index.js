@@ -227,7 +227,7 @@ const MintModal = ({
 
     setCurDate(moment());
     setTimeObj(timeObj);
-    // console.log('handleCountdown');
+    // console.log('handleCountdown', nowT.format());
     if (!nowT.isBefore(targetDay)) {
       console.log('clear');
       clearInterval(intervalRef.current);
